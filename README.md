@@ -4,6 +4,8 @@ This repo hosts GRIP's web-ui code and deployment information.
 
 ## Building and running on localhost
 
+`npm` version lower than 7 could have package build issues.
+
 First install dependencies:
 
 ```sh
