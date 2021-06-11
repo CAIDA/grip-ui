@@ -67,16 +67,11 @@ class EventsList extends React.Component {
                 <div className='col-md-12 page-header'>
                     <h1>BGP Hijacks Observatory</h1>
                     <p className='lead'>
-                        The <a href="https://www.caida.org/funding/hijacks">BGP Hijacks Observatory</a> is
+                        The <a href="https://www.caida.org/funding/hijacks">Global Routing Intelligece Platform</a> is
                         a <a href="https://www.caida.org">CAIDA</a> project
                         to detect and characterize BGP hijacking attacks,
                         including stealthy man-in-the-middle (MiTM) Internet
-                        traffic interception attacks. The Observatory uses
-                        the <Link to='/feeds'> PaaS</Link>
-                        to power its data collection and
-                        analytics platform, and provides event data to HI3 to
-                        allow correlation with other types of Internet
-                        security data.
+                        traffic interception attacks.
                     </p>
                 </div>
             </div>
