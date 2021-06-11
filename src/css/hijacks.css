@@ -32,6 +32,10 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
+body {
+    font-size: 14px !important;
+}
+
 #hijacks.container-fluid {
     padding-left: 50px;
     padding-right: 50px;
@@ -45,28 +49,111 @@
     margin-top: 100px;
 }
 
-/* acks panel */
-#hijacks .acks {
-    width: 260px;
-    padding-bottom: 20px;
+/*
+SEARCH BAR
+ */
+
+.search-bar {
+    display: flex;
+    font-size: 14px;
+}
+.search-bar__component {
+    display: inline-block;
+    margin: 5px;
+    width: auto;
 }
 
-#hijacks .acks > h2 {
-    margin-top: 0;
+.search-bar__label {
+    display: block;
 }
 
-#hijacks .ack-logos a {
-    font-size: 22px;
-    font-weight: bold;
-    color: #2c3e50;
+.search-bar__component{
+    display: inline-block;
+    margin: 5px;
+    width: auto;
 }
 
-#hijacks .ack-logos .row {
-    margin-top: 40px;
+.search-bar__label {
+    display: block;
 }
 
-#hijacks .ack-logo {
-    max-width: 80%;
-    max-height: 80px;
+.search-bar__time {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar__time-input {
+    width: 340px;
+}
+
+.search-bar__time-icon {
+    margin-right: 10px;
+}
+
+.search-bar__search-input {
+    width: 80% !important;
+    margin: 3px;
+}
+
+.btn-primary {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-radius: 4px;
+}
+
+.btn-group > .btn input[type="radio"]{
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+/*
+TAGS
+ */
+
+.tag-list {
+    margin: 5px;
+}
+
+.tag-label {
+    font-size: 100%;
+    display: inline-block;
+    margin-inline-end: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.asn__country {
+    white-space: nowrap;
+}
+
+.ipprefix__span {
+    margin-right: 5px;
+}
+
+.tag-icon {
+    margin-right: 5px;
 }
 

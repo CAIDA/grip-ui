@@ -57,7 +57,6 @@ class EventSuspicionSelector extends React.Component {
                 {/* onClick hax due to https://github.com/react-bootstrap/react-bootstrap/issues/2734 */}
                 <ToggleButtonGroup type="radio" name="eventSuspicionLevel"
                                    value={this.props.eventSuspicionLevel}
-                                   onChange={this._changeEventSuspicionLevel}
                 >
                     <ToggleButton value='all' id='all'
                                   onClick={this._changeEventSuspicionLevel}>All</ToggleButton>
@@ -73,7 +72,10 @@ class EventSuspicionSelector extends React.Component {
     }
 
     _changeEventSuspicionLevel = (e) => {
-        this.props.onChange(e.target.id);
+        let target = e.target.id;
+        if(target!==""){
+            this.props.onChange(e.target.id);
+        }
     };
 }
 

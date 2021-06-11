@@ -239,6 +239,7 @@ class EventsTable extends React.Component {
 
     _loadEventsData = async () => {
         let [min_susp, max_susp] = translate_suspicion_str_to_values(this.query.suspicionLevel);
+        console.log(min_susp, max_susp);
 
         let baseUrl = `${BASE_URL}/events?`;
         let params = new URLSearchParams();
@@ -324,6 +325,7 @@ class EventsTable extends React.Component {
     };
 
     _handleSearchSuspicionChange = (suspicionLevel) => {
+        console.log(suspicionLevel);
         this.query.curPage = 0;
         this.query.suspicionLevel =  suspicionLevel;
         this._loadEventsData();

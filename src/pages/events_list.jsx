@@ -35,8 +35,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import '../css/hijacks.css';
 import EventsTable from "../components/events-table";
+import '../css/hijacks.css';
 
 const HORIZONTAL_OFFSET = 480;
 
@@ -65,14 +65,7 @@ class EventsList extends React.Component {
         return <div id='hijacks' className='container-fluid'>
             <div className='row header'>
                 <div className='col-md-12 page-header'>
-                    <h1>BGP Hijacks Observatory</h1>
-                    <p className='lead'>
-                        The <a href="https://www.caida.org/funding/hijacks">Global Routing Intelligece Platform</a> is
-                        a <a href="https://www.caida.org">CAIDA</a> project
-                        to detect and characterize BGP hijacking attacks,
-                        including stealthy man-in-the-middle (MiTM) Internet
-                        traffic interception attacks.
-                    </p>
+                    <h1>Global Routing Intelligence Platform</h1>
                 </div>
             </div>
 
