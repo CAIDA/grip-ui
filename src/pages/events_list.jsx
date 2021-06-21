@@ -37,7 +37,6 @@ import {Link} from 'react-router-dom';
 
 import EventsTable from "../components/events-table";
 import '../css/hijacks.css';
-
 const HORIZONTAL_OFFSET = 480;
 
 class EventsList extends React.Component {
@@ -49,7 +48,6 @@ class EventsList extends React.Component {
             vizType: 'feed',
             frameWidth: window.innerWidth - HORIZONTAL_OFFSET
         };
-
     }
 
     componentDidMount() {

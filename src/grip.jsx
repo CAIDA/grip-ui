@@ -35,10 +35,10 @@
 import React from "react";
 import EventsList from "./pages/events_list";
 import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import EventDetails from "./pages/event_details";
 import PfxEventDetails from "./pages/pfx_event_details";
 import EventTags from "./pages/event_tags";
+import {SignInScreen} from "./utils/firebase";
 
 class HijacksRouter extends React.Component {
     render() {
@@ -46,6 +46,7 @@ class HijacksRouter extends React.Component {
             {/* page routes */}
             <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
             <Route path='/events/:eventType/:eventId' component={EventDetails}/>
+            <Route path='/signin' component={SignInScreen}/>
             <Route path='/' component={EventsList}/>
             <Route path='/tags' component={EventTags}/>
         </Switch>;
