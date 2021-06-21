@@ -95,7 +95,11 @@ function UserProfile() {
 
 function UserEmail() {
     const user = getCurrentUser();
-    return <div>{user?.email || "unauthenticated"}</div>;
+    if(user){
+        return <div>{user.email}</div>;
+    } else {
+        return <div> unauthenticated </div>;
+    }
 }
 
 export {SignInScreen, FirebaseAuthProvider, getCurrentUser, UserProfile}
