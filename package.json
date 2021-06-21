@@ -1,0 +1,46 @@
+{
+  "name": "grip-ui",
+  "version": "0.1.0",
+  "description": "This repo hosts GRIP's web-ui code and deployment information.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "parcel src/index.html",
+    "build-prod": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CAIDA/grip-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CAIDA/grip-ui/issues"
+  },
+  "homepage": "https://github.com/CAIDA/grip-ui#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.0",
+    "history": "^4.10.1",
+    "is-url-external": "^1.0.3",
+    "moment": "^2.29.1",
+    "prop-types": "^15.7.2",
+    "query-string": "^7.0.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.0",
+    "react-bootstrap-daterangepicker": "^7.0.0",
+    "react-data-table-component": "^6.11.7",
+    "react-dom": "^17.0.2",
+    "react-google-charts": "^3.0.15",
+    "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "parcel-bundler": "^1.12.5"
+  }
+}
