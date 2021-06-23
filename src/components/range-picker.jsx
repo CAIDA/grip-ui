@@ -35,6 +35,12 @@
 import React from 'react';
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import moment from "moment";
+// you will need the css that comes with bootstrap@3. if you are using
+// a tool like webpack, you can do the following:
+import 'bootstrap/dist/css/bootstrap.css';
+// you will also need the css that comes with bootstrap-daterangepicker
+import 'bootstrap-daterangepicker/daterangepicker.css';
+
 
 class RangePicker extends React.Component {
 
@@ -75,19 +81,19 @@ class RangePicker extends React.Component {
                 <label className="search-bar__label">
                     Select time period (UTC now: {moment().utc().format("lll")})
                 </label>
-                <span className="glyphicon glyphicon-calendar search-bar__time-icon"/>
                 <DateRangePicker
-                    startDate={this.props.startDate}
-                    endDate={this.props.endDate}
+                    initialSettings={{
+                        startDate: this.props.startDate,
+                        endDate: this.props.endDate,
+                        minYear: 2018,
+                        ranges: this.ranges,
+                        autoApply: true,
+                        alwaysShowCalendar: true,
+                        timePicker: true,
+                        timePicker24Hour: true,
+                        timePickerIncrement: 5,
+                    }}
                     onApply={this.props.onApply}
-                    ranges={this.ranges}
-                    showDropdowns={true}
-                    minYear={2000}
-                    alwaysShowCalendars={true}
-                    autoApply={true}
-                    timePicker={true}
-                    timePicker24Hour={true}
-                    timePickerIncrement={5}
                 >
                         <input
                             readOnly={true}
