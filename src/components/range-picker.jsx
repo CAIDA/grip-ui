@@ -41,6 +41,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 // you will also need the css that comes with bootstrap-daterangepicker
 import 'bootstrap-daterangepicker/daterangepicker.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 class RangePicker extends React.Component {
 
@@ -81,26 +84,29 @@ class RangePicker extends React.Component {
                 <label className="search-bar__label">
                     Select time period (UTC now: {moment().utc().format("lll")})
                 </label>
-                <DateRangePicker
-                    initialSettings={{
-                        startDate: this.props.startDate,
-                        endDate: this.props.endDate,
-                        minYear: 2018,
-                        ranges: this.ranges,
-                        autoApply: true,
-                        alwaysShowCalendar: true,
-                        timePicker: true,
-                        timePicker24Hour: true,
-                        timePickerIncrement: 5,
-                    }}
-                    onApply={this.props.onApply}
-                >
+                <div className="search-bar__flex">
+                    <FontAwesomeIcon icon={faCalendarAlt}  className={"calendar-icon"}/>
+                    <DateRangePicker
+                        initialSettings={{
+                            startDate: this.props.startDate,
+                            endDate: this.props.endDate,
+                            minYear: 2018,
+                            ranges: this.ranges,
+                            autoApply: true,
+                            alwaysShowCalendar: true,
+                            timePicker: true,
+                            timePicker24Hour: true,
+                            timePickerIncrement: 5,
+                        }}
+                        onApply={this.props.onApply}
+                    >
                         <input
                             readOnly={true}
                             className="form-control search-bar__time-input"
                             value={timeRangeStr}
                         />
-                </DateRangePicker>
+                    </DateRangePicker>
+                </div>
             </div>
         );
     }

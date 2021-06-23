@@ -114,14 +114,16 @@ class EventSearchBox extends React.Component {
                 <label className="search-bar__label">
                     Search for events by prefix/ASN/tags
                 </label>
-                <input type="text"
-                       className="form-control search-bar__search-input"
-                       placeholder="Search by prefix/ASN/tags"
-                       ref={this.textInput}
-                       onKeyPress={this._handleKeyPress}
-                       defaultValue={this._queryToString()}
-                />
-                <button className="btn btn-success" type="button" onClick={this._handleSearch}>Search</button>
+                <div className="search-bar__flex">
+                    <input type="text"
+                           className="form-control search-bar__search-input"
+                           placeholder="Search by prefix/ASN/tags"
+                           ref={this.textInput}
+                           onKeyPress={this._handleKeyPress}
+                           defaultValue={this._queryToString()}
+                    />
+                    <button className="btn btn-success" type="button" onClick={this._handleSearch}>Search</button>
+                </div>
             </div>
         )
     }
