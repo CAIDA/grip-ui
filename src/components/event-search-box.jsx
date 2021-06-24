@@ -1,5 +1,5 @@
 /*
- * This software is Copyright (c) 2013 The Regents of the University of
+ * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
  * without fee, and without a written agreement is hereby granted, provided that
@@ -114,14 +114,16 @@ class EventSearchBox extends React.Component {
                 <label className="search-bar__label">
                     Search for events by prefix/ASN/tags
                 </label>
-                <input type="text"
-                       className="form-control search-bar__search-input"
-                       placeholder="Search by prefix/ASN/tags"
-                       ref={this.textInput}
-                       onKeyPress={this._handleKeyPress}
-                       defaultValue={this._queryToString()}
-                />
-                <button className="btn btn-success" type="button" onClick={this._handleSearch}>Search</button>
+                <div className="search-bar__flex">
+                    <input type="text"
+                           className="form-control search-bar__search-input"
+                           placeholder="Search by prefix/ASN/tags"
+                           ref={this.textInput}
+                           onKeyPress={this._handleKeyPress}
+                           defaultValue={this._queryToString()}
+                    />
+                    <button className="btn btn-success" type="button" onClick={this._handleSearch}>Search</button>
+                </div>
             </div>
         )
     }

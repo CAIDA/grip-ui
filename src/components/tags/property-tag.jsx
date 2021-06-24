@@ -1,5 +1,5 @@
 /*
- * This software is Copyright (c) 2013 The Regents of the University of
+ * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
  * without fee, and without a written agreement is hereby granted, provided that
@@ -39,6 +39,12 @@ import Link from "react-router-dom/Link";
 import {convertTagName} from "../../utils/tags";
 import axios from "axios";
 import {TAGS_URL} from "../../utils/endpoints";
+import Badge from "react-bootstrap/Badge";
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import "../../css/hijacks.css"
 
 class PropertyTag extends React.Component{
 
@@ -72,7 +78,7 @@ class PropertyTag extends React.Component{
             case "grey":
             case "na":
             case "unknown":
-                res = "default";
+                res = "secondary";
                 break;
             default:
                 break;
@@ -109,10 +115,11 @@ class PropertyTag extends React.Component{
                         </Tooltip>
                     }
                 >
-            <span className={`label label-${type} tag-label`}>
-                <i className="tag-icon fa fa-info-circle" aria-hidden="true"/>
+            <Badge variant={type}>
+                <FontAwesomeIcon icon={faInfoCircle} />
+                {" "}
                 {name}
-            </span>
+            </Badge>
                 </OverlayTrigger>
             </Link>
         )

@@ -1,5 +1,5 @@
 /*
- * This software is Copyright (c) 2013 The Regents of the University of
+ * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
  * without fee, and without a written agreement is hereby granted, provided that
@@ -37,6 +37,12 @@ import PropTypes from "prop-types";
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import {convertTagName} from "../../utils/tags";
 
+import Badge from "react-bootstrap/Badge";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
+
+import "../../css/hijacks.css"
+
 class InferenceTag extends React.Component{
 
     static propTypes = {
@@ -54,7 +60,7 @@ class InferenceTag extends React.Component{
 
     _determine_label_type(){
         let level = this.props.suspicion_level;
-        let res = ["default", "question-circle"];
+        let res = ["secondary", "question-circle"];
         if(level >= 80) {
             res = ["danger", "thumbs-down"]
         }
@@ -78,12 +84,12 @@ class InferenceTag extends React.Component{
                         </Tooltip>
                     }
                 >
-                <span className={`label tag-label label-${type[0]}`}>
-                    <i className={`tag-icon fa fa-lightbulb-o`} aria-hidden="true"/>
-                    {/*💡*/}
+                <Badge variant={type[0]}>
+                    <FontAwesomeIcon icon={faLightbulb} />
+                    {" "}
                     {name}
                     {this.props.render_level && ` (${this.props.suspicion_level})` }
-                </span>
+                </Badge>
                 </OverlayTrigger>
                 {this.props.render_explanation &&
                     <p><i>{this.props.explanation}</i></p>

@@ -1,5 +1,5 @@
 /*
- * This software is Copyright (c) 2013 The Regents of the University of
+ * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
  * without fee, and without a written agreement is hereby granted, provided that
@@ -35,6 +35,15 @@
 import React from 'react';
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import moment from "moment";
+// you will need the css that comes with bootstrap@3. if you are using
+// a tool like webpack, you can do the following:
+import 'bootstrap/dist/css/bootstrap.css';
+// you will also need the css that comes with bootstrap-daterangepicker
+import 'bootstrap-daterangepicker/daterangepicker.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 class RangePicker extends React.Component {
 
@@ -75,26 +84,29 @@ class RangePicker extends React.Component {
                 <label className="search-bar__label">
                     Select time period (UTC now: {moment().utc().format("lll")})
                 </label>
-                <span className="glyphicon glyphicon-calendar search-bar__time-icon"/>
-                <DateRangePicker
-                    startDate={this.props.startDate}
-                    endDate={this.props.endDate}
-                    onApply={this.props.onApply}
-                    ranges={this.ranges}
-                    showDropdowns={true}
-                    minYear={2000}
-                    alwaysShowCalendars={true}
-                    autoApply={true}
-                    timePicker={true}
-                    timePicker24Hour={true}
-                    timePickerIncrement={5}
-                >
+                <div className="search-bar__flex">
+                    <FontAwesomeIcon icon={faCalendarAlt}  className={"calendar-icon"}/>
+                    <DateRangePicker
+                        initialSettings={{
+                            startDate: this.props.startDate,
+                            endDate: this.props.endDate,
+                            minYear: 2018,
+                            ranges: this.ranges,
+                            autoApply: true,
+                            alwaysShowCalendar: true,
+                            timePicker: true,
+                            timePicker24Hour: true,
+                            timePickerIncrement: 5,
+                        }}
+                        onApply={this.props.onApply}
+                    >
                         <input
                             readOnly={true}
                             className="form-control search-bar__time-input"
                             value={timeRangeStr}
                         />
-                </DateRangePicker>
+                    </DateRangePicker>
+                </div>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 /*
- * This software is Copyright (c) 2013 The Regents of the University of
+ * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
  * without fee, and without a written agreement is hereby granted, provided that
@@ -312,9 +312,10 @@ class EventsTable extends React.Component {
      */
 
     _handleSearchTimeChange = (event, picker) => {
+        // NOTE: the rangepicker's time has not timezone information. we convert it to string and parse as utc time here.
         this.query.curPage = 0;
-        this.query.startTime = picker.startDate.utc();
-        this.query.endTime =  picker.endDate.utc();
+        this.query.startTime = moment.utc(picker.startDate.format("YYYY-MM-DDTHH:mm"), "YYYY-MM-DDTHH:mm");
+        this.query.endTime = moment.utc(picker.endDate.format("YYYY-MM-DDTHH:mm"), "YYYY-MM-DDTHH:mm");
         this._loadEventsData();
     };
 
