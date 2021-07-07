@@ -39,7 +39,8 @@ import ReactDOM from 'react-dom';
 import EventDetails from "./pages/event_details";
 import PfxEventDetails from "./pages/pfx_event_details";
 import EventTags from "./pages/event_tags";
-import {SignInScreen, UserProfile} from "./utils/firebase";
+import {SensitiveScreen, SignInScreen, UserProfile} from "./utils/auth_auth0";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 class HijacksRouter extends React.Component {
     render() {
@@ -47,6 +48,7 @@ class HijacksRouter extends React.Component {
             {/* page routes */}
             <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
             <Route path='/events/:eventType/:eventId' component={EventDetails}/>
+            <Route path='/sensitive' component={SensitiveScreen}/>
             <Route path='/signin' component={SignInScreen}/>
             <Route path='/profile' component={UserProfile}/>
             <Route path='/' component={EventsList}/>
@@ -58,9 +60,21 @@ class HijacksRouter extends React.Component {
 class HijacksApp extends React.Component {
 
     render() {
-        return <BrowserRouter>
-            <HijacksRouter/>
-        </BrowserRouter>;
+        console.log(window.location.origin);
+        return <Auth0Provider
+            domain="mingwei.us.auth0.com"
+            clientId="huXLtwBxALf2KcqwRoYJWDLLF66POAEe"
+            audience="https://api.grip.caida.org"
+            scope="write:events"
+            redirectUri={"http://localhost:1234/profile"}
+            responseType={"token"}
+            useRefreshTokens={true}
+            cacheLocation={"localstorage"}
+        >
+            <BrowserRouter>
+                <HijacksRouter/>
+            </BrowserRouter>
+        </Auth0Provider>;
     }
 }
 
