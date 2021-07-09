@@ -106,9 +106,9 @@ SEARCH BAR
 }
 
 .btn-primary {
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
+    color: #333 !important;
+    background-color: #fff !important;
+    border-color: #ccc !important;
 }
 
 .btn {
