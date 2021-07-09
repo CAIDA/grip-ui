@@ -41,7 +41,6 @@ import Badge from "react-bootstrap/Badge";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 
-import "../../css/hijacks.css"
 
 class InferenceTag extends React.Component{
 

@@ -39,16 +39,23 @@ import ReactDOM from 'react-dom';
 import EventDetails from "./pages/event_details";
 import PfxEventDetails from "./pages/pfx_event_details";
 import EventTags from "./pages/event_tags";
+import Nav from "./templates/nav";
+import Footer from "./templates/footer";
 
 class HijacksRouter extends React.Component {
     render() {
-        return <Switch>
-            {/* page routes */}
-            <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
-            <Route path='/events/:eventType/:eventId' component={EventDetails}/>
-            <Route path='/' component={EventsList}/>
-            <Route path='/tags' component={EventTags}/>
-        </Switch>;
+        return <React.Fragment>
+            <Nav/>
+            <Switch>
+                {/* page routes */}
+                <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
+                <Route path='/events/:eventType/:eventId' component={EventDetails}/>
+                <Route path='/' component={EventsList}/>
+                <Route path='/tags' component={EventTags}/>
+            </Switch>;
+            <Footer/>
+        </React.Fragment>
+
     }
 }
 

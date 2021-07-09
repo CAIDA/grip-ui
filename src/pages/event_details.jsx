@@ -34,7 +34,6 @@
 
 import React from 'react';
 import axios from "axios";
-import '../css/hijacks.css';
 import EventDetailsTable from "../components/event-details-table";
 import PfxEventsTable from "../components/pfx-events-table";
 import EventTrTagsTable from "../components/event-tr-tags-table";
@@ -110,7 +109,7 @@ class EventDetails extends React.Component {
 
         return (
             <div id='hijacks' className='container-fluid'>
-                <div className='row header'>
+                <div className='row'>
                     <div className='col-md-12 page-header'>
                         <h1><a href={"/events"}> 	&#128281; </a></h1>
                         <h1> Event Details </h1>

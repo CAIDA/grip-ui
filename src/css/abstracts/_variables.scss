@@ -1,4 +1,4 @@
-/*
+/*!
  * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
@@ -32,59 +32,54 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-import React from 'react';
-import {Link} from 'react-router-dom';
+// GRID
+$grid-width: 114rem;
+$gutter-vertical: 4.5rem;
+$gutter-horizontal: 2.5rem;
+$gutter-vertical-small: 2.5rem;
+$header-height: 5rem;
 
-import EventsTable from "../components/events-table";
+// FONTS
+$font-lato: 'Lato', sans-serif;
+$font-nunito: 'Nunito', sans-serif;
+$font-ubuntu: 'Ubuntu', sans-serif;
 
-const HORIZONTAL_OFFSET = 480;
+// SIZING
+$control-panel-input-label-font-size: 1.1rem;
+$control-panel-input-calendar-icon-background: #ECF0F1;
 
-class EventsList extends React.Component {
+// COLORS
+$color-white: #fff;
+$color-black: #000;
+$color-background-white: #fbfbfb;
+$color-primary: #2c3e50;
+$color-primary-light: #617486;
+$color-primary-dark: #0D2032;
+$color-secondary: #5899AE;
+$color-secondary-light: #7FB7CA;
+$color-secondary-dark: #286F86;
+//$color-secondary: #d66a35;
+//$color-secondary-light: #FFB08B;
+//$color-secondary-dark: #B24B18;
+$color-blue-border: #DCE4EA;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            eventType: 'moas',
-            vizType: 'feed',
-            frameWidth: window.innerWidth - HORIZONTAL_OFFSET
-        };
+$color-table-row-odd: #f7f7f7;
+$color-table-cell-border: #eeeeee;
+$color-table-head-border: #798998;
 
-    }
+$color-alert-feed-critical: #F18179;
+$color-alert-feed-warning: #F2AB79;
+$color-alert-feed-normal: #D4F19D;
 
-    componentDidMount() {
-        window.addEventListener('resize', this._resize);
-    }
+$color-error-background: #E74C3C;
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this._resize);
-    }
+$color-ping-slash-24: #1F78B4;
+$color-bgp: #33A02C;
+$color-ucsd-nt: #BE1D2D;
+$color-table-datasource-bottom-border: #aaa;
 
-    render() {
-
-        return <div id='hijacks' className='container-fluid'>
-            <div className='row'>
-                <div className='col-md-12 page-header'>
-                    <h1>Global Routing Intelligence Platform</h1>
-                </div>
-            </div>
-
-            <EventsTable/>
-
-        </div>;
-    }
-
-    _resize = () => {
-        const newWidth = window.innerWidth - HORIZONTAL_OFFSET;
-        this.setState({frameWidth: newWidth});
-    };
-
-    _changeVizType = (e) => {
-        this.setState({vizType: e.target.id});
-    };
-
-    _typeChanged = (eventType) => {
-        this.setState({eventType});
-    };
-}
-
-export default EventsList;
+// BOX SHADOW
+$box-shadow: 0 1px 2px #9F9D9D;
+$linear-gradient-primary: linear-gradient(2deg, $color-primary, $color-primary-light);
+$linear-gradient-secondary: linear-gradient(2deg, $color-secondary-dark, $color-secondary-light);
+$linear-gradient-secondary-reverse: linear-gradient(2deg, $color-secondary-light, $color-secondary-dark);

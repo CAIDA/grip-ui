@@ -5,8 +5,17 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm dist/bundle.js",
-    "start": "parcel src/index.html",
-    "build-prod": "parcel build src/index.html"
+    "start": "npm-run-all build:css start:web",
+    "start:web": "parcel src/index.html",
+
+    "watch:sass": "node-sass src/css/main.scss build/css/main.css -w",
+    "compile:sass": "node-sass src/css/main.scss build/css/main-comp.css",
+    "prefix:sass": "postcss --use autoprefixer -b \"last 10 versions\" build/css/main-comp.css -o build/css/main-comp.prefix.css",
+    "compress:css": "node-sass build/css/main-comp.prefix.css src/css/style-compressed.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass prefix:sass compress:css",
+
+    "build:react": "parcel build src/index.html",
+    "build": "npm-run-all build:css build:react"
   },
   "repository": {
     "type": "git",
@@ -44,6 +53,10 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
-    "parcel-bundler": "^1.12.5"
+    "autoprefixer": "^10.2.6",
+    "node-sass": "^6.0.1",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.5",
+    "postcss-cli": "^8.3.1"
   }
 }

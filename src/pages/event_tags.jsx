@@ -33,7 +33,6 @@
  */
 
 import React from 'react';
-import '../css/hijacks.css';
 import EventTagsTable from "../components/event-tags-table";
 
 const HORIZONTAL_OFFSET = 480;
