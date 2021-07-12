@@ -44,12 +44,12 @@ class Nav extends Component {
         return(
             <div className="header">
                 <div className="header__container">
-                    <div className="header__logo">
-                        <Link to="/">
-                            {/*<img src={iodaLogo} alt={iodaLogoAltText} />*/}
-                            Home
-                        </Link>
-                    </div>
+                    {/*<div className="header__logo">*/}
+                    {/*    <Link to="/">*/}
+                    {/*        /!*<img src={iodaLogo} alt={iodaLogoAltText} />*!/*/}
+                    {/*        Home*/}
+                    {/*    </Link>*/}
+                    {/*</div>*/}
                     <nav className="header__nav">
                         <ul className="header__list">
                             <li className="header__item">
