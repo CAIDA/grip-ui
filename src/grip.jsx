@@ -41,6 +41,7 @@ import PfxEventDetails from "./pages/pfx_event_details";
 import EventTags from "./pages/event_tags";
 import Nav from "./templates/nav";
 import Footer from "./templates/footer";
+import CodeRepos from "./pages/repos";
 
 class HijacksRouter extends React.Component {
     render() {
@@ -50,9 +51,10 @@ class HijacksRouter extends React.Component {
                 {/* page routes */}
                 <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
                 <Route path='/events/:eventType/:eventId' component={EventDetails}/>
-                <Route path='/' component={EventsList}/>
+                <Route path='/repos' component={CodeRepos}/>
                 <Route path='/tags' component={EventTags}/>
-            </Switch>;
+                <Route path='/' component={EventsList}/>
+            </Switch>
             <Footer/>
         </React.Fragment>
 
