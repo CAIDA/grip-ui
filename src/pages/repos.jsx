@@ -110,7 +110,7 @@ class CodeRepos extends React.Component {
             },
         ]
 
-        return <div id='hijacks' className='container-fluid'>
+        return <div id='hijacks' className='container-fluid subpage'>
             <div className="repos">
                 <div className="repos__heading h1">
                     Code Repositories and Tools

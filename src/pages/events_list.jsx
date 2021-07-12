@@ -61,7 +61,7 @@ class EventsList extends React.Component {
 
     render() {
 
-        return <div id='hijacks' className='container-fluid'>
+        return <div id='hijacks' className='container-fluid subpage'>
             <div className='row'>
                 <div className='col-md-12 page-header'>
                     <h1>Global Routing Intelligence Platform</h1>

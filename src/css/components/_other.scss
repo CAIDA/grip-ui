@@ -38,19 +38,10 @@ body {
   font-size: 14px !important;
 }
 
-.row {
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-#hijacks > .row {
-  margin-bottom: 20px;
-}
-
-.btn-primary {
-  color: #333 !important;
-  background-color: #fff !important;
-  border-color: #ccc !important;
+#hijacks .grip-btn {
+  color: #333 ;
+  background-color: #fff ;
+  border-color: #ccc ;
 }
 
 .btn {
@@ -75,7 +66,7 @@ body {
 }
 
 .btn-group > .btn input[type="radio"]{
-  position: absolute;
+  // position: absolute;
   clip: rect(0,0,0,0);
   pointer-events: none;
 }

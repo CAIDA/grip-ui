@@ -36,13 +36,13 @@
   width: 100%;
   background-color: $color-primary;
   box-shadow: $box-shadow;
-  position: fixed;
+  // position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   height: $header-height;
-  padding: 0 4.5rem;
+  // padding: 0 4.5rem;
 
   &__container {
     display: flex;

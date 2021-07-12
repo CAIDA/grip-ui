@@ -32,10 +32,18 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
+body {
+  width: 100%;
+}
+
 #hijacks {
-  padding-top: $header-height;
+  // padding-top: $header-height;
+  width: 100%;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .subpage {
-  margin-left: 4rem !important;
+  // margin-left: 4rem !important;
+  // margin-right: 4rem !important;
 }
