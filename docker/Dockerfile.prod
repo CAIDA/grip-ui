@@ -15,7 +15,7 @@ RUN npm install --silent --loglevel=error
 # add app
 COPY ./ ./
 
-RUN npm run build-prod
+RUN npm run build
 
 # start app
 CMD ["npm", "start"]
