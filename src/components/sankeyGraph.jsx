@@ -176,50 +176,52 @@ class SankeyGraph extends React.Component {
             let data = this.prepareData(this.state.data);
             return (
 
-                <div>
+                <div id="sankey_div">
                     <h3> {this.props.title} </h3>
-                    <Chart
-                        width={"100%"}
-                        height={data.length * 12 + 30}
-                        chartType="Sankey"
-                        title={"test"}
-                        loader={<div>Loading Chart</div>}
-                        options={
-                            {
-                                title: this.props.title,
-                                sankey: {
-                                    node: {
-                                        interactivity: true, // Allows you to select nodes.
+                    <div id="chart_div">
+                        <Chart
+                            width={"100%"}
+                            height={data.length * 12 + 30}
+                            chartType="Sankey"
+                            title={"Sankey Graph"}
+                            loader={<div>Loading Chart</div>}
+                            options={
+                                {
+                                    title: this.props.title,
+                                    sankey: {
+                                        node: {
+                                            interactivity: true, // Allows you to select nodes.
+                                        }
                                     }
                                 }
                             }
-                        }
-                        chartEvents={[
-                            {
-                                eventName: 'select',
-                                callback: ({ chartWrapper }) => {
-                                    // on click of the AS to pop up more information
-                                    /*
-                                    // temporarily disabled the pop up until feature is needed
-                                    const selection = chartWrapper.getChart().getSelection();
-                                    if(selection.length>0){
-                                        // only pop up modal when selecting (not when de-selecting)
-                                        this.modal.setContent(<AsRank asn={selection[0].name}/>);
-                                        this.modal.show();
-                                    }
-                                     */
+                            chartEvents={[
+                                {
+                                    eventName: 'select',
+                                    callback: ({ chartWrapper }) => {
+                                        // on click of the AS to pop up more information
+                                        /*
+                                        // temporarily disabled the pop up until feature is needed
+                                        const selection = chartWrapper.getChart().getSelection();
+                                        if(selection.length>0){
+                                            // only pop up modal when selecting (not when de-selecting)
+                                            this.modal.setContent(<AsRank asn={selection[0].name}/>);
+                                            this.modal.show();
+                                        }
+                                         */
+                                    },
                                 },
-                            },
-                        ]}
-                        columns={[
-                            {type:"string", label:"from"},
-                            {type:"string", label:"to"},
-                            {type:"number", label:"count"},
-                            {type:"string", role:"style"},
-                        ]}
-                        rows={data}
-                    />
+                            ]}
+                            columns={[
+                                {type:"string", label:"from"},
+                                {type:"string", label:"to"},
+                                {type:"number", label:"count"},
+                                {type:"string", role:"style"},
+                            ]}
+                            rows={data}
+                        />
 
+                    </div>
                 </div>
             )
         }
