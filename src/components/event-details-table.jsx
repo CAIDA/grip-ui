@@ -191,7 +191,7 @@ class EventDetailsTable extends React.Component {
 
                 <div className={"row"}>
                     <div className="col-lg-12">
-                        <a target='_blank' type="button" className="btn btn-sm btn-primary" href={this.props.jsonUrl}>
+                        <a target='_blank' type="button" className="btn btn-sm btn-primary grip-btn" href={this.props.jsonUrl}>
                             Raw JSON</a>
                     </div>
                 </div>

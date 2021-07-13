@@ -33,12 +33,6 @@
  */
 
 import React from 'react';
-import axios from "axios";
-import EventDetailsTable from "../components/event-details-table";
-import PfxEventsTable from "../components/pfx-events-table";
-import EventTrTagsTable from "../components/event-tr-tags-table";
-import queryString from "query-string";
-import {BASE_URL, TAGS_URL} from "../utils/endpoints";
 import LinkA from "../utils/linka";
 
 class CodeRepos extends React.Component {
@@ -112,11 +106,13 @@ class CodeRepos extends React.Component {
 
         return <div id='hijacks' className='container-fluid subpage'>
             <div className="repos">
-                <div className="repos__heading h1">
-                    Code Repositories and Tools
-                </div>
-                <div className="repos__heading__software h2">
-                    Software Repositories
+
+                <div className="row partners">
+                    <div className="col-1-of-1">
+                        <h2 className="section-header">
+                            Code Repositories
+                        </h2>
+                    </div>
                 </div>
 
                 <div className="repos__description">
@@ -134,9 +130,14 @@ class CodeRepos extends React.Component {
                     </ul>
                 </div>
 
-                <div className="repos__heading__data h2">
-                    Third-party Tools
+                <div className="row partners">
+                    <div className="col-1-of-1">
+                        <h2 className="section-header">
+                            Third-party Software
+                        </h2>
+                    </div>
                 </div>
+
                 <div className="repos__description">
                     In addition, we also relies on the following software tools and libraries in GRIP:
                 </div>

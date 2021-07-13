@@ -46,4 +46,10 @@ body {
 .subpage {
   // margin-left: 4rem !important;
   // margin-right: 4rem !important;
+
+  & .page-header {
+    margin-top: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

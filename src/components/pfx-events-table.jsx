@@ -125,7 +125,7 @@ class PfxEventsTable extends React.Component {
                 cell: row=>{
                     if(this.props.isEventDetails) {
                         let url = `/events/${this.props.eventType}/${this.props.eventId}/${row.fingerprint}`;
-                        return <LinkA type="button" className="btn btn-sm btn-primary" to={url}>
+                        return <LinkA type="button" className="btn btn-sm btn-primary grip-btn" to={url}>
                             Details
                         </LinkA>
                     }
@@ -215,7 +215,7 @@ class PfxEventsTable extends React.Component {
                 cell: row=>{
                     if(this.props.isEventDetails) {
                         let url = `/events/${this.props.eventType}/${this.props.eventId}/${row.fingerprint}`;
-                        return <LinkA type="button" className="btn btn-sm btn-primary" to={url}>
+                        return <LinkA type="button" className="btn btn-sm btn-primary grip-btn" to={url}>
                             Details
                         </LinkA>
                     }
