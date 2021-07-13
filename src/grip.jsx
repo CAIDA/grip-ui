@@ -43,6 +43,7 @@ import Nav from "./templates/nav";
 import Footer from "./templates/footer";
 import CodeRepos from "./pages/repos";
 import Acknowledgement from "./pages/ack";
+import Methodology from "./pages/method";
 
 class HijacksRouter extends React.Component {
     render() {
@@ -52,6 +53,7 @@ class HijacksRouter extends React.Component {
                 {/* page routes */}
                 <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
                 <Route path='/events/:eventType/:eventId' component={EventDetails}/>
+                <Route path='/method' component={Methodology}/>
                 <Route path='/repos' component={CodeRepos}/>
                 <Route path='/ack' component={Acknowledgement}/>
                 <Route path='/tags' component={EventTags}/>

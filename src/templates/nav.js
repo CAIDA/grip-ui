@@ -67,6 +67,11 @@ class Nav extends Component {
                                     Acknowledgement
                                 </a>
                             </li>
+                            <li className="header__item">
+                                <a href="/method" className="header__link">
+                                    Methodology
+                                </a>
+                            </li>
                             {/*<li className="navigation__item">*/}
                             {/*    <Link to="/docs" className="navigation__link">*/}
                             {/*        Documentation*/}
