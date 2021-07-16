@@ -33,7 +33,6 @@
  */
 
 import React from 'react';
-import '../css/hijacks.css';
 import axios from "axios";
 import SankeyGraph from "../components/sankeyGraph";
 import TraceroutesTable from "../components/traceroutes-table";
@@ -76,7 +75,7 @@ class PfxEventDetails extends React.Component {
     }
 
     loadEventData = async() => {
-        const response = await axios.get(`https://api.grip.caida.org/dev/json/event/id/${this.eventId}`);
+        const response = await axios.get(`${BASE_URL}/event/id/${this.eventId}`);
         this.setState({
             loadingEvent: false,
             eventData: response.data,
@@ -85,7 +84,7 @@ class PfxEventDetails extends React.Component {
 
     loadPfxEventData = async () => {
         const response = await axios.get(
-            `https://api.grip.caida.org/dev/json/pfx_event/id/${this.eventId}/${this.fingerprint}`,
+            `${BASE_URL}/pfx_event/id/${this.eventId}/${this.fingerprint}`,
         );
         let subpaths = [];
         let superpaths = [];
@@ -228,7 +227,7 @@ class PfxEventDetails extends React.Component {
 
         return (
             <div id='hijacks' className='container-fluid'>
-                <div className='row header'>
+                <div className='row'>
                     <div className='col-md-12 page-header'>
                         <h1><a href={`/events/${this.state.eventData.event_type}/${this.state.eventData.id}`}> 	&#128281; </a></h1>
                         <h1>Prefix Event Details</h1>

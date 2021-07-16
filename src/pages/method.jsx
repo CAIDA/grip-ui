@@ -33,58 +33,56 @@
  */
 
 import React from 'react';
-import {Link} from 'react-router-dom';
+import LinkA from "../utils/linka";
 
-import EventsTable from "../components/events-table";
-
-const HORIZONTAL_OFFSET = 480;
-
-class EventsList extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            eventType: 'moas',
-            vizType: 'feed',
-            frameWidth: window.innerWidth - HORIZONTAL_OFFSET
-        };
-
-    }
-
-    componentDidMount() {
-        window.addEventListener('resize', this._resize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this._resize);
-    }
+class Methodology extends React.Component {
 
     render() {
-
+        let slides = [
+            {
+                "name": "CAIDA'S BGP (Hijacking) Observatory",
+                "date": "2020-03",
+                "venue": "Workshop On Active Internet Measurements: Knowledge Of Internet Structure: Measurement, Epistemology, And Technology (AIMS-KISMET)",
+                "link": "https://catalog.caida.org/details/media/2020_caidas_bgp_hijacking_observatory_kismet",
+            },
+            {
+                "name": "CAIDA'S BGP (Hijacking) Observatory",
+                "date": "2019-08",
+                "venue": "DHS IMPACT PI Meeting",
+                "link": "https://catalog.caida.org/details/media/2019_hijacks_impact_pi_aug",
+            },
+            {
+                "name": "CAIDA's BGP Observatory",
+                "date": "2019-04",
+                "venue": "Workshop On Active Internet Measurements (AIMS)",
+                "link": "https://catalog.caida.org/details/media/2019_caidas_bgp_observatory_aims",
+            },
+        ];
         return <div id='hijacks' className='container-fluid subpage'>
-            <div className='row'>
-                <div className='col-md-12 page-header'>
-                    <h2>Global Routing Intelligence Platform</h2>
+            <div className="repos">
+
+                <div className="row partners">
+                    <div className="col-1-of-1">
+                        <h2 className="section-header">
+                            Methodology
+                        </h2>
+                    </div>
+                </div>
+
+                <div className="repos__description">
+                    We are currently working on a research paper to describe the detailed methodology developed for GRIP.
+                    To learn more about the methods now, please check out the following research presentations:
+                    <ul>
+                        {
+                            slides.map((v, i) => {
+                                return <li key={i}> <LinkA to={v.link}>{v.name}, {v.venue}, {v.date}</LinkA></li>
+                            })
+                        }
+                    </ul>
                 </div>
             </div>
-
-            <EventsTable/>
-
-        </div>;
+        </div>
     }
-
-    _resize = () => {
-        const newWidth = window.innerWidth - HORIZONTAL_OFFSET;
-        this.setState({frameWidth: newWidth});
-    };
-
-    _changeVizType = (e) => {
-        this.setState({vizType: e.target.id});
-    };
-
-    _typeChanged = (eventType) => {
-        this.setState({eventType});
-    };
 }
 
-export default EventsList;
+export default Methodology;

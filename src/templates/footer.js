@@ -32,59 +32,42 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
 
-import EventsTable from "../components/events-table";
+import caidaLogo from '../images/logos/caida.png';
+import sdscLogo from '../images/logos/sdsc.jpg';
+import ucsdLogo from '../images/logos/ucsd-logo.png';
 
-const HORIZONTAL_OFFSET = 480;
 
-class EventsList extends React.Component {
 
+class Footer extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            eventType: 'moas',
-            vizType: 'feed',
-            frameWidth: window.innerWidth - HORIZONTAL_OFFSET
-        };
-
-    }
-
-    componentDidMount() {
-        window.addEventListener('resize', this._resize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this._resize);
     }
 
     render() {
-
-        return <div id='hijacks' className='container-fluid subpage'>
-            <div className='row'>
-                <div className='col-md-12 page-header'>
-                    <h2>Global Routing Intelligence Platform</h2>
+        return (
+            <div className="footer">
+                <div className="footer__content">
+                    <div className="row">
+                        <div className="col-1-of-1">
+                            <div className="footer__logos">
+                                <div className="footer__logos-item footer__logos-item--caida">
+                                    <img src={caidaLogo} alt={`caida logo`} />
+                                </div>
+                                <div className="footer__logos-item">
+                                    <img src={sdscLogo} alt={`sdsc logo`} />
+                                </div>
+                                <div className="footer__logos-item">
+                                    <img src={ucsdLogo} alt={`caida logo`} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <EventsTable/>
-
-        </div>;
+        );
     }
-
-    _resize = () => {
-        const newWidth = window.innerWidth - HORIZONTAL_OFFSET;
-        this.setState({frameWidth: newWidth});
-    };
-
-    _changeVizType = (e) => {
-        this.setState({vizType: e.target.id});
-    };
-
-    _typeChanged = (eventType) => {
-        this.setState({eventType});
-    };
 }
 
-export default EventsList;
+export default Footer;

@@ -44,7 +44,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import "../../css/hijacks.css"
 
 class PropertyTag extends React.Component{
 
