@@ -39,6 +39,7 @@ import PfxEventsTable from "../components/pfx-events-table";
 import EventTrTagsTable from "../components/event-tr-tags-table";
 import queryString from "query-string";
 import {BASE_URL, TAGS_URL} from "../utils/endpoints";
+import {FeedbackForm} from "../components/auth/feedback-form";
 
 class EventDetails extends React.Component {
 
@@ -146,6 +147,9 @@ class EventDetails extends React.Component {
                                     isEventDetails={true}
                                     title={"Prefix Event List"}
                     />
+                </div>
+                <div>
+                    <FeedbackForm event_id={this.eventId}/>
                 </div>
             </div>
         );

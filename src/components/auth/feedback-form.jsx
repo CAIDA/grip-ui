@@ -1,4 +1,4 @@
-/*!
+/*
  * This software is Copyright (c) 2015 The Regents of the University of
  * California. All Rights Reserved. Permission to copy, modify, and distribute this
  * software and its documentation for academic research and education purposes,
@@ -32,97 +32,74 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-.header {
-  width: 100%;
-  background-color: $color-primary;
-  box-shadow: $box-shadow;
-  // position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  height: $header-height;
-  // padding: 0 4.5rem;
+import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
+import {LoginButton, LogoutButton} from "./login-logout";
 
-  &__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    max-width: $grid-width;
-    width: 100%;
-    height: auto;
+const SubmitFeedback = () => {
+    console.log("test");
+};
 
-    @include respond(phone-lg) {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
+const FeedbackForm = (props) => {
+    let event_id = props.event_id;
+    const { isAuthenticated, user } = useAuth0();
 
-  &__logo {
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-    overflow: hidden;
-
-    & a {
-      display: block;
-
-      & img {
-        height: 3.5rem;
-      }
-    }
-  }
-
-  &__nav {
-    position: relative;
-    z-index: 10;
-
-    &--mobile {
-      display: none;
-    }
-  }
-
-  &__list {
-    display: flex;
-    justify-content: space-between;
-    color: $color-white;
-    font-family: $font-lato;
-    font-size: 1.4rem;
-    text-transform: capitalize;
-    height: 100%;
-    margin: 0;
-  }
-
-  &__item {
-    width: 18rem;
-    list-style-type: none;
-    height: auto;
-    display: flex;
-    &__right {
-      margin-left: 5rem;
-    }
-  }
-
-  &__link:link,
-  &__link:visited {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    color: $color-white;
-    text-decoration: none;
-
-    @include respond(phone-lg) {
-      padding-right: 4.5rem;
-      justify-content: flex-end;
+    const handleSubmit = (event) => {
+        const formData = new FormData(event.target);
+        event.preventDefault();
+        let feedback = {
+            "type": formData.get("type"),
+            "details": formData.get("details"),
+            "from": {
+                "name": user.name,
+                "email": user.email,
+            }
+        }
+        console.log(feedback)
     }
 
-    &:hover {
-      text-decoration: none;
-      color: $color-white;
-      background-color: $color-primary;
+
+
+    if(!isAuthenticated) {
+        return null;
     }
-  }
-}
+
+    let feedback_types = [
+        {
+            "id":"benign",
+            "name":"Confirm Benign Event",
+        },
+        {
+            "id":"hijacks",
+            "name":"Confirm Hijack Event",
+        }
+    ];
+
+    return <div className="event-feedback-form">
+        <form onSubmit={handleSubmit}>
+            <h3>Event Feedback</h3>
+            <div>
+                <label>Type</label>
+            </div>
+            <div>
+                <select id="type" name="type" required defaultValue={""}>
+                    <option value="" disabled>None</option>
+                    {
+                        feedback_types.map((v)=>{
+                            return <option value={v.id} key={v.id}>{v.name}</option>;
+                        })
+                    }
+                </select>
+            </div>
+            <div>
+                <label>Details</label>
+            </div>
+            <div>
+                <textarea id="details" name="details" key="details" placeholder="Please provide details" required={true}/>
+            </div>
+            <button type="submit"> Submit </button>
+        </form>
+    </div>;
+};
+
+export {FeedbackForm};

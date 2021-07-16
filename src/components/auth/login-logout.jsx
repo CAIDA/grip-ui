@@ -32,7 +32,7 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-import React, {createContext, useContext, useEffect, useState} from 'react';
+import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginButton = () => {
@@ -40,18 +40,18 @@ const LoginButton = () => {
     return <button onClick={() => loginWithRedirect()}>Log In</button>;
 };
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
     const { logout } = useAuth0();
     return (
         <button onClick={() => logout({ returnTo: window.location.origin })}>
-            Log Out
+            {props.firstname} Log Out
         </button>
     );
 };
 
 const AuthenticationButton = () => {
-    const { isAuthenticated } = useAuth0();
-    return isAuthenticated ? <LogoutButton /> : <LoginButton />;
+    const { isAuthenticated, user } = useAuth0();
+    return isAuthenticated ? <LogoutButton firstname={user.name}/> : <LoginButton />;
 }
 
 function LoginNav () {
@@ -59,37 +59,9 @@ function LoginNav () {
         isLoading,
         isAuthenticated,
         error,
-        user,
-        getAccessTokenSilently,
-        loginWithRedirect,
-        logout,
     } = useAuth0();
 
-    const [userMetadata, setUserMetadata] = useState(null);
-
-
-
-    if(isLoading){
-        console.log("loading...");
-        return <div>Loading ...</div>
-    }
-    if (error) {
-        console.log("error..."+error.message);
-        return <div>Oops... {error.message}</div>;
-    }
-
-
-    console.log("loading done..."+isAuthenticated);
-    if(isAuthenticated){
-        return <React.Fragment>
-            <pre>{user.name}</pre>
-            <AuthenticationButton/>
-        </React.Fragment>
-    } else {
-        return <React.Fragment>
-            <AuthenticationButton/>
-        </React.Fragment>
-    }
+    return <AuthenticationButton/>
 }
 
 export {LoginButton, LogoutButton, LoginNav}

@@ -74,7 +74,7 @@ class Nav extends Component {
                                     Methodology
                                 </a>
                             </li>
-                            <li>
+                            <li className="header__item header__item__right">
                                 <LoginNav/>
                             </li>
                             {/*<li className="navigation__item">*/}
