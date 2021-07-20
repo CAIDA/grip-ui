@@ -32,12 +32,12 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-const BASE_URL="https://api.grip.caida.org/v1/json";
+const BASE_URL="https://api.grip.caida.org/dev/json";
 
 const TAGS_URL=`${BASE_URL}/tags`
 const ASNDROP_URL=`${BASE_URL}/asndrop`
 const BLOCKLIST_URL=`${BASE_URL}/blocklist`
 
-const FEEDBACK_URL="https://api.grip.caida.org/v1/feedback"
+const FEEDBACK_URL="https://api.grip.caida.org/dev/feedback"
 
 export {BASE_URL, TAGS_URL, ASNDROP_URL, BLOCKLIST_URL, FEEDBACK_URL}

@@ -35,11 +35,14 @@
 import React, {useEffect, useState} from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import {FEEDBACK_URL} from "../../utils/endpoints";
+import Modal from 'react-modal';
 
 const FeedbackForm = (props) => {
     let event_id = props.event_id;
     const { isAuthenticated, user, getAccessTokenSilently} = useAuth0();
     const [accessToken, setAccessToken] = useState(null);
+
+    let closeModalCall = props.closeModal;
 
     async function handleSubmit (event)  {
         const formData = new FormData(event.target);
@@ -68,6 +71,10 @@ const FeedbackForm = (props) => {
                 'event_id': feedback.event_id,
             })
         });
+
+        if(closeModalCall!==null){
+            closeModalCall();
+        }
     }
 
     useEffect(() => {
@@ -116,8 +123,7 @@ const FeedbackForm = (props) => {
             <h3>Event Feedback</h3>
             <div>
                 <label>Type</label>
-            </div>
-            <div>
+                <br/>
                 <select id="type" name="type" required defaultValue={""}>
                     <option value="" disabled>None</option>
                     {
@@ -129,13 +135,56 @@ const FeedbackForm = (props) => {
             </div>
             <div>
                 <label>Details</label>
-            </div>
-            <div>
-                <textarea id="details" name="details" key="details" placeholder="Please provide details" required={true}/>
+                <br/>
+                <textarea cols="80" id="details" name="details" key="details" placeholder="Please provide details" required={true}/>
             </div>
             <button type="submit"> Submit </button>
+            {closeModalCall!==null &&
+                <button onClick={closeModalCall}> Cancel </button>
+            }
         </form>
     </div>;
 };
 
-export {FeedbackForm};
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
+const FeedbackWithButton = (props) => {
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    return <React.Fragment>
+        <a type="button" onClick={openModal} className="btn btn-sm btn-primary grip-btn"> Feedback </a>
+        <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+        >
+            <FeedbackForm event_id={props.event_id} closeModal={closeModal}/>
+        </Modal>
+    </React.Fragment>
+}
+
+export {FeedbackForm, FeedbackWithButton};

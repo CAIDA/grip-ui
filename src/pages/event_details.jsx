@@ -148,9 +148,6 @@ class EventDetails extends React.Component {
                                     title={"Prefix Event List"}
                     />
                 </div>
-                <div>
-                    <FeedbackForm event_id={this.eventId}/>
-                </div>
             </div>
         );
     }
