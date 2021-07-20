@@ -39,7 +39,7 @@ import IPPrefix from "./ip-prefix";
 import axios from "axios";
 import {InferenceTagsList} from "./tags/inference-tag";
 import {ASNDROP_URL, BLOCKLIST_URL} from "../utils/endpoints";
-import FeedbackWithButton from "./auth/feedback-form";
+import {FeedbackWithButton} from "./auth/feedback-form";
 
 class EventDetailsTable extends React.Component {
 
