@@ -59,7 +59,6 @@ class PfxEventDetails extends React.Component {
             loadingEvent: true,
             loadingPfxEvent: true,
         };
-
     }
 
     componentDidMount() {

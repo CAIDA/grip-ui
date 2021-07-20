@@ -99,6 +99,9 @@
     list-style-type: none;
     height: auto;
     display: flex;
+    &__right {
+      margin-left: 5rem;
+    }
   }
 
   &__link:link,

@@ -32,12 +32,36 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-const BASE_URL="https://api.grip.caida.org/dev/json";
+import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
-const TAGS_URL=`${BASE_URL}/tags`
-const ASNDROP_URL=`${BASE_URL}/asndrop`
-const BLOCKLIST_URL=`${BASE_URL}/blocklist`
+const LoginButton = () => {
+    const { loginWithRedirect } = useAuth0();
+    return <button onClick={() => loginWithRedirect()}>Log In</button>;
+};
 
-const FEEDBACK_URL="https://api.grip.caida.org/dev/feedback"
+const LogoutButton = (props) => {
+    const { logout } = useAuth0();
+    return (
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+            {props.firstname} Log Out
+        </button>
+    );
+};
 
-export {BASE_URL, TAGS_URL, ASNDROP_URL, BLOCKLIST_URL, FEEDBACK_URL}
+const AuthenticationButton = () => {
+    const { isAuthenticated, user } = useAuth0();
+    return isAuthenticated ? <LogoutButton firstname={user.name}/> : <LoginButton />;
+}
+
+function LoginNav () {
+    const {
+        isLoading,
+        isAuthenticated,
+        error,
+    } = useAuth0();
+
+    return <AuthenticationButton/>
+}
+
+export {LoginButton, LogoutButton, LoginNav}

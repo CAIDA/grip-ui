@@ -34,6 +34,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {LoginNav} from "../components/auth/login-logout";
 
 class Nav extends Component {
     constructor(props) {
@@ -42,6 +43,7 @@ class Nav extends Component {
 
     render() {
         return(
+
             <div className="header">
                 <div className="header__container">
                     {/*<div className="header__logo">*/}
@@ -71,6 +73,9 @@ class Nav extends Component {
                                 <a href="/method" className="header__link">
                                     Methodology
                                 </a>
+                            </li>
+                            <li className="header__item header__item__right">
+                                <LoginNav/>
                             </li>
                             {/*<li className="navigation__item">*/}
                             {/*    <Link to="/docs" className="navigation__link">*/}

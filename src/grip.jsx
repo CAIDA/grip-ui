@@ -44,32 +44,46 @@ import Footer from "./templates/footer";
 import CodeRepos from "./pages/repos";
 import Acknowledgement from "./pages/ack";
 import Methodology from "./pages/method";
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 
-class HijacksRouter extends React.Component {
-    render() {
-        return <React.Fragment>
-            <Nav/>
-            <Switch>
-                {/* page routes */}
-                <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
-                <Route path='/events/:eventType/:eventId' component={EventDetails}/>
-                <Route path='/method' component={Methodology}/>
-                <Route path='/repos' component={CodeRepos}/>
-                <Route path='/ack' component={Acknowledgement}/>
-                <Route path='/tags' component={EventTags}/>
-                <Route path='/' component={EventsList}/>
-            </Switch>
-            <Footer/>
-        </React.Fragment>
 
+const App = () => {
+    const { isLoading } = useAuth0();
+
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
+
+    return <React.Fragment>
+        <Nav/>
+        <Switch>
+            {/* page routes */}
+            <Route path='/events/:eventType/:eventId/:pfxEventId' component={PfxEventDetails}/>
+            <Route path='/events/:eventType/:eventId' component={EventDetails}/>
+            <Route path='/method' component={Methodology}/>
+            <Route path='/repos' component={CodeRepos}/>
+            <Route path='/ack' component={Acknowledgement}/>
+            <Route path='/tags' component={EventTags}/>
+            <Route path='/' component={EventsList}/>
+        </Switch>
+        <Footer/>
+    </React.Fragment>
 }
 
 class HijacksApp extends React.Component {
 
     render() {
         return <BrowserRouter>
-            <HijacksRouter/>
+            <Auth0Provider
+                domain="mingwei.us.auth0.com"
+                clientId="huXLtwBxALf2KcqwRoYJWDLLF66POAEe"
+                cacheLocation='localstorage'
+                audience="https://mingwei.us.auth0.com/api/v2/"
+                scope="read:current_user update:current_user_metadata"
+                redirectUri={window.location.origin}
+            >
+                <App/>
+            </Auth0Provider>
         </BrowserRouter>;
     }
 }
