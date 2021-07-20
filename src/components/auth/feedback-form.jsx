@@ -32,35 +32,67 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import {LoginButton, LogoutButton} from "./login-logout";
-
-const SubmitFeedback = () => {
-    console.log("test");
-};
+import {FEEDBACK_URL} from "../../utils/endpoints";
 
 const FeedbackForm = (props) => {
     let event_id = props.event_id;
-    const { isAuthenticated, user } = useAuth0();
+    const { isAuthenticated, user, getAccessTokenSilently} = useAuth0();
+    const [accessToken, setAccessToken] = useState(null);
 
-    const handleSubmit = (event) => {
+    async function handleSubmit (event)  {
         const formData = new FormData(event.target);
         event.preventDefault();
         let feedback = {
             "type": formData.get("type"),
             "details": formData.get("details"),
+            "event_id": event_id,
             "from": {
                 "name": user.name,
                 "email": user.email,
             }
         }
-        console.log(feedback)
+
+        let _res = await fetch(FEEDBACK_URL, {
+            method: 'post',
+            headers: new Headers({
+                'Authorization': 'Bearer '+ accessToken,
+                'Content-type': 'application/json'
+            }),
+            body: JSON.stringify({
+                'from_name': feedback.from.name,
+                'from_email': feedback.from.email,
+                'feedback_type': feedback.type,
+                'feedback_details': feedback.details,
+                'event_id': feedback.event_id,
+            })
+        });
     }
 
+    useEffect(() => {
+        const getUserMetadata = async () => {
+            const domain = "mingwei.us.auth0.com";
+
+            try {
+                const accessToken = await getAccessTokenSilently({
+                    audience: `https://${domain}/api/v2/`,
+                    scope: "read:current_user",
+                });
+
+                setAccessToken(accessToken);
+            } catch (e) {
+                console.log(e.message);
+            }
+        };
+
+        if(isAuthenticated){
+            getUserMetadata();
+        }
+    }, []);
 
 
-    if(!isAuthenticated) {
+    if(!isAuthenticated || !accessToken) {
         return null;
     }
 
@@ -72,6 +104,10 @@ const FeedbackForm = (props) => {
         {
             "id":"hijacks",
             "name":"Confirm Hijack Event",
+        },
+        {
+            "id":"other",
+            "name":"Other",
         }
     ];
 
