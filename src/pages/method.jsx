@@ -70,8 +70,7 @@ class Methodology extends React.Component {
                 </div>
 
                 <div className="repos__description">
-                    We are currently working on a research paper to describe the detailed methodology developed for GRIP.
-                    To learn more about the methods now, please check out the following research presentations:
+                    Please check out the following research presentations:
                     <ul>
                         {
                             slides.map((v, i) => {
