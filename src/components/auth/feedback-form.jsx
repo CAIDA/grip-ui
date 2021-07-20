@@ -37,12 +37,37 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {FEEDBACK_URL} from "../../utils/endpoints";
 import Modal from 'react-modal';
 
+Modal.setAppElement('#app');
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 const FeedbackForm = (props) => {
     let event_id = props.event_id;
     const { isAuthenticated, user, getAccessTokenSilently} = useAuth0();
-    const [accessToken, setAccessToken] = useState(null);
+    const [accessToken, setAccessToken]  = useState(null);
+    const [modalIsOpen, setIsOpen] =useState(false);
 
-    let closeModalCall = props.closeModal;
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
 
     async function handleSubmit (event)  {
         const formData = new FormData(event.target);
@@ -72,9 +97,7 @@ const FeedbackForm = (props) => {
             })
         });
 
-        if(closeModalCall!==null){
-            closeModalCall();
-        }
+        closeModal();
     }
 
     useEffect(() => {
@@ -118,63 +141,6 @@ const FeedbackForm = (props) => {
         }
     ];
 
-    return <div className="event-feedback-form">
-        <form onSubmit={handleSubmit}>
-            <h3>Event Feedback</h3>
-            <div>
-                <label>Type</label>
-                <br/>
-                <select id="type" name="type" required defaultValue={""}>
-                    <option value="" disabled>None</option>
-                    {
-                        feedback_types.map((v)=>{
-                            return <option value={v.id} key={v.id}>{v.name}</option>;
-                        })
-                    }
-                </select>
-            </div>
-            <div>
-                <label>Details</label>
-                <br/>
-                <textarea cols="80" id="details" name="details" key="details" placeholder="Please provide details" required={true}/>
-            </div>
-            <button type="submit"> Submit </button>
-            {closeModalCall!==null &&
-                <button onClick={closeModalCall}> Cancel </button>
-            }
-        </form>
-    </div>;
-};
-
-Modal.setAppElement('#app');
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
-
-const FeedbackWithButton = (props) => {
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
     return <React.Fragment>
         <a type="button" onClick={openModal} className="btn btn-sm btn-primary grip-btn"> Feedback </a>
         <Modal
@@ -184,9 +150,33 @@ const FeedbackWithButton = (props) => {
             style={customStyles}
             contentLabel="Example Modal"
         >
-            <FeedbackForm event_id={props.event_id} closeModal={closeModal}/>
+            <div className="event-feedback-form">
+                <form onSubmit={handleSubmit}>
+                    <h3>Event Feedback</h3>
+                    <div>
+                        <label>Type</label>
+                        <br/>
+                        <select id="type" name="type" required defaultValue={""}>
+                            <option value="" disabled>None</option>
+                            {
+                                feedback_types.map((v)=>{
+                                    return <option value={v.id} key={v.id}>{v.name}</option>;
+                                })
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <label>Details</label>
+                        <br/>
+                        <textarea cols="80" id="details" name="details" key="details" placeholder="Please provide details" required={true}/>
+                    </div>
+                    <button type="submit"> Submit </button>
+                    <button onClick={closeModal}> Cancel </button>
+                </form>
+            </div>
         </Modal>
-    </React.Fragment>
-}
 
-export {FeedbackForm, FeedbackWithButton};
+    </React.Fragment>
+};
+
+export {FeedbackForm};

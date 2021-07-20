@@ -39,7 +39,7 @@ import IPPrefix from "./ip-prefix";
 import axios from "axios";
 import {InferenceTagsList} from "./tags/inference-tag";
 import {ASNDROP_URL, BLOCKLIST_URL} from "../utils/endpoints";
-import {FeedbackWithButton} from "./auth/feedback-form";
+import {FeedbackForm} from "./auth/feedback-form";
 
 class EventDetailsTable extends React.Component {
 
@@ -194,7 +194,7 @@ class EventDetailsTable extends React.Component {
                     <div className="col-lg-12">
                         <a target='_blank' type="button" className="btn btn-sm btn-primary grip-btn" href={this.props.jsonUrl}>
                             Raw JSON</a>
-                        <FeedbackWithButton event_id={data.id}/>
+                        <FeedbackForm event_id={data.id}/>
                     </div>
                 </div>
 
