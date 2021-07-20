@@ -146,6 +146,8 @@ const FeedbackForm = (props) => {
     </div>;
 };
 
+Modal.setAppElement('#app');
+
 const customStyles = {
     content: {
         top: '50%',
