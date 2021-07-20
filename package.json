@@ -12,7 +12,7 @@
     "prefix:sass": "postcss --use autoprefixer -b \"last 10 versions\" build/css/main-comp.css -o build/css/main-comp.prefix.css",
     "compress:css": "node-sass build/css/main-comp.prefix.css src/css/style-compressed.css --output-style compressed",
     "build:css": "npm-run-all compile:sass prefix:sass compress:css",
-    "build:react": "parcel build src/index.html",
+    "build:react": "parcel build src/index.html --no-source-maps",
     "build": "npm-run-all build:css build:react"
   },
   "repository": {
