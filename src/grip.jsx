@@ -34,7 +34,7 @@
 
 import React from "react";
 import EventsList from "./pages/events_list";
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, useHistory} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import EventDetails from "./pages/event_details";
 import PfxEventDetails from "./pages/pfx_event_details";
@@ -44,8 +44,9 @@ import Footer from "./templates/footer";
 import CodeRepos from "./pages/repos";
 import Acknowledgement from "./pages/ack";
 import Methodology from "./pages/method";
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
-
+import { useAuth0 } from '@auth0/auth0-react';
+import {Auth0ProviderWithHistory} from "./components/auth/provider";
+import {LogoutHandler} from "./components/auth/login-logout";
 
 const App = () => {
     const { isLoading } = useAuth0();
@@ -64,6 +65,7 @@ const App = () => {
             <Route path='/repos' component={CodeRepos}/>
             <Route path='/ack' component={Acknowledgement}/>
             <Route path='/tags' component={EventTags}/>
+            <Route path='/logout' component={LogoutHandler}/>
             <Route path='/' component={EventsList}/>
         </Switch>
         <Footer/>
@@ -74,16 +76,9 @@ class HijacksApp extends React.Component {
 
     render() {
         return <BrowserRouter>
-            <Auth0Provider
-                domain="mingwei.us.auth0.com"
-                clientId="huXLtwBxALf2KcqwRoYJWDLLF66POAEe"
-                cacheLocation='localstorage'
-                audience="https://mingwei.us.auth0.com/api/v2/"
-                scope="read:current_user update:current_user_metadata"
-                redirectUri={window.location.origin}
-            >
+            <Auth0ProviderWithHistory>
                 <App/>
-            </Auth0Provider>
+            </Auth0ProviderWithHistory>
         </BrowserRouter>;
     }
 }

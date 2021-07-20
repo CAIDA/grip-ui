@@ -32,44 +32,36 @@
  * MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
 import {useHistory} from "react-router-dom";
-import queryString from 'query-string';
+import {Auth0Provider} from '@auth0/auth0-react';
 
+const Auth0ProviderWithHistory = ({ children }) => {
+    const domain = "mingwei.us.auth0.com";
+    const clientId = "huXLtwBxALf2KcqwRoYJWDLLF66POAEe";
+    const audience="https://mingwei.us.auth0.com/api/v2/";
+    const cacheLocation='localstorage';
+    const scope="read:current_user update:current_user_metadata";
 
-const LoginButton = () => {
-    const { loginWithRedirect } = useAuth0();
-    return <button onClick={() => loginWithRedirect({
-        appState: {
-            returnTo: window.location.pathname
-        }
-    })}>Log In</button>;
-};
+    const history = useHistory();
 
-const LogoutButton = (props) => {
-    const { logout } = useAuth0();
+    const onRedirectCallback = (appState) => {
+        history.push(appState?.returnTo || window.location.pathname);
+    };
+
     return (
-        <button onClick={() => logout({ returnTo: window.location.origin+"/logout?returnPath="+window.location.pathname })}>
-            {props.firstname} Log Out
-        </button>
+        <Auth0Provider
+            domain={domain}
+            clientId={clientId}
+            redirectUri={window.location.origin}
+            onRedirectCallback={onRedirectCallback}
+            cacheLocation={cacheLocation}
+            audience={audience}
+            scope={scope}
+        >
+            {children}
+        </Auth0Provider>
     );
 };
 
-const AuthenticationButton = () => {
-    const { isAuthenticated, user } = useAuth0();
-    return isAuthenticated ? <LogoutButton firstname={user.name}/> : <LoginButton />;
-}
-
-function LoginNav () {
-    return <AuthenticationButton/>
-}
-
-const LogoutHandler = () => {
-    const history = useHistory();
-    let params = queryString.parse(window.location.search);
-    history.push(params.returnPath? params.returnPath: "/");
-    return <div/>
-};
-
-export {LoginButton, LogoutButton, LoginNav, LogoutHandler}
+export {Auth0ProviderWithHistory};
