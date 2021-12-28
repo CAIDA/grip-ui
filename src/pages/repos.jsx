@@ -70,9 +70,24 @@ class CodeRepos extends React.Component {
                 "link": "https://github.com/CAIDA/bgpview",
             },
             {
+                "name": "PyBGPView-IO",
+                "desc": "BGPView IO support for Kafka",
+                "link": "https://github.com/CAIDA/pybgpview-io-kafka",
+            },
+            {
                 "name": "BGPStream",
                 "desc": "The CAIDA BGPStream software framework",
                 "link": "https://bgpstream.caida.org",
+            },
+            {
+                "name": "LibIPMeta",
+                "desc": "IP metadata lookup library",
+                "link": "https://github.com/CAIDA/libipmeta",
+            },
+            {
+                "name": "Python bindings for LibIPMeta",
+                "desc": "Python bindings for libipmeta",
+                "link": "https://github.com/CAIDA/pyipmeta",
             },
             {
                 "name": "PyWandio",
